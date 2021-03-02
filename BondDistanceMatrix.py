@@ -240,30 +240,20 @@ def bond_path_matrix(directory, fileName, bondingAtoms):
 preBondPathMat = bond_path_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_start_molecule.data', ['28', '62'])
 postBondPathMat = bond_path_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_post_rx1_molecule.data', ['32', '15'])
 
-preBondDistMat = bond_distance_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_start_molecule.data', ['28', '62'])
-postBondDistMat = bond_distance_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_post_rx1_molecule.data', ['32', '15']) 
+# preBondDistMat = bond_distance_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_start_molecule.data', ['28', '62'])
+# postBondDistMat = bond_distance_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_post_rx1_molecule.data', ['32', '15']) 
 
-for index, atomRow in enumerate(postBondDistMat):
-    postBondDistMat[index][11] = 0.0
-    # postBondDistMat[index][7] = 0.0
+for index, atomRow in enumerate(postBondPathMat):
+    postBondPathMat[index][11] = 0.0
+    # postBondPathMat[index][7] = 0.0
 
 from DistanceMatrix import gen_distance_matrix
 
 preDistMat, preAtomIDs = gen_distance_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_start_molecule.data')
 postDistMat, postAtomIDs = gen_distance_matrix('/home/matt/Documents/Oct20-Dec20/Bonding_Test/DGEBA_DETDA/Reaction/', 'new_post_rx1_molecule.data')
 
-preBondMatrix = preBondDistMat * preDistMat
-postBondMatrix = postBondDistMat * postDistMat
-
-# searchIndex = 0
-
-# searchRow = preBondMatrix[searchIndex]
-
-# matchRow = postBondMatrix[16]
-
-# diff = searchRow - matchRow
-
-# sumDiff = np.sum(diff)
+preBondMatrix = preBondPathMat * preDistMat
+postBondMatrix = postBondPathMat * postDistMat
 
 print()
 
